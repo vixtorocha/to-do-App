@@ -2,7 +2,20 @@ let todoList = {
     todos: [],
 
     displayTodos: function () {
-        console.log('My todos:', this.todos);
+        if (this.todos.length === 0) {
+            console.log('The to-dos list is empty.');
+        } else {
+            // Se não tiver vazia, mostrar as todos.
+            console.log('My todos:');
+            for (i = 0; i < this.todos.length; i++) {
+
+                if (this.todos[i].completed === true) {
+                    console.log('(X)', this.todos[i].todoText);
+                } else {
+                    console.log('( )', this.todos[i].todoText);
+                }
+            }
+        }
     },
 
     addTodos: function (todoText) {
