@@ -41,5 +41,31 @@ let todoList = {
     toggleCompleted: function (position) {
         this.todos[position].completed = !this.todos[position].completed //inverte o bollean
         this.displayTodos();
+    },
+
+    toggleAll: function () {
+        let totalTodos = this.todos.length;
+        let completedTodos = 0;
+
+        //checa quantos estão marcados como completo
+        for (let i = 0; i < totalTodos; i++) {
+            if (this.todos[i].completed === true) {
+                completedTodos++;
+            }
+        }
+
+        //se todos estiverem marcados, desmarca. Se houver um desmarcado, marca tudo.
+        if (completedTodos === totalTodos) {
+            for (let i = 0; i < totalTodos; i++) {
+                this.todos[i].completed = false;
+            }
+        } else {
+            for (let i = 0; i < totalTodos; i++) {
+                this.todos[i].completed = true;
+            }
+        }
+
+        this.displayTodos();
     }
+
 };
