@@ -69,17 +69,11 @@ let todoList = {
     }
 };
 
-//Preciso ter acesso ao display todos
-let displayTodosButton = document.getElementById('Display-Button');
-
-//Rodar o display todos quando o botão for precionado
-displayTodosButton.addEventListener('click', function () {
-    todoList.displayTodos();
-})
-
-//agora a mesma coisa com o botão toggle all
-let toggleAllButton = document.getElementById('toggleAllButton');
-
-toggleAllButton.addEventListener('click', function () {
-    todoList.toggleAll();
-})
+var handlers = {
+    displayTodos: function () {
+        todoList.displayTodos();
+    },
+    toggleAll: function () {
+        todoList.toggleAll();
+    }
+};
