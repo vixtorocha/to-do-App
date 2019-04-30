@@ -18,7 +18,7 @@ let todoList = {
         }
     },
 
-    addTodos: function (todoText) {
+    addTodo: function (todoText) {
 
         this.todos.push({
             todoText: todoText, //O primeiro todo é a propriedade e o segundo é o parametro.
@@ -69,11 +69,38 @@ let todoList = {
     }
 };
 
+//Os handlers servem para realizar DOM manipulation.
 var handlers = {
     displayTodos: function () {
         todoList.displayTodos();
     },
     toggleAll: function () {
         todoList.toggleAll();
+    },
+
+    addTodo: function () {
+        let addTodoTextInput = document.getElementById('addTodoTextInput');
+        todoList.addTodo(addTodoTextInput.value);
+        addTodoTextInput.value = '';
+    },
+
+    changeTodo: function () {
+        let changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+        let changeTodoTextInput = document.getElementById('changeTodoTextInput');
+        todoList.changeTodos(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+        changeTodoPositionInput = '';
+        changeTodoTextInput = '';
+    },
+
+    deleteTodo: function () {
+        let deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
+        todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
+        deleteTodoPositionInput = '';
+    },
+
+    toggleCompleted: function () {
+        let toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
+        todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+        toggleCompletedPositionInput = '';
     }
 };
