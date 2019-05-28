@@ -25,23 +25,20 @@ let todoList = {
         let totalTodos = this.todos.length;
         let completedTodos = 0;
 
-        //checa quantos estão marcados como completo
-        for (let i = 0; i < totalTodos; i++) {
-            if (this.todos[i].completed === true) {
+        //Checa quantas tarefas estão checadas
+        this.todos.forEach(function (todo) {
+            if (todo.completed === true) {
                 completedTodos++;
             }
-        }
+        });
 
-        //se todos estiverem marcados, desmarca. Se houver um desmarcado, marca tudo.
-        if (completedTodos === totalTodos) {
-            for (let i = 0; i < totalTodos; i++) {
-                this.todos[i].completed = false;
+        this.todos.forEach(function (todo) {
+            if (completedTodos === totalTodos) {
+                todo.completed = false;
+            } else {
+                todo.completed = true;
             }
-        } else {
-            for (let i = 0; i < totalTodos; i++) {
-                this.todos[i].completed = true;
-            }
-        }
+        });
     }
 };
 
@@ -86,22 +83,21 @@ let view = {
         let todosUl = document.querySelector('ul');
         todosUl.innerHTML = '';
 
-        for (let i = 0; i < todoList.todos.length; i++) {
+        todoList.todos.forEach(function (todo, position) {
             let todoLi = document.createElement('li');
-            let todo = todoList.todos[i];
-
             let todoTextWithCompletion = '';
+
             if (todo.completed === true) {
                 todoTextWithCompletion = '(x) ' + todo.todoText
             } else {
                 todoTextWithCompletion = '( ) ' + todo.todoText
             }
 
-            todoLi.id = i;
+            todoLi.id = position;
             todoLi.textContent = todoTextWithCompletion;
             todoLi.appendChild(this.createsDeleteButton());
             todosUl.appendChild(todoLi);
-        }
+        }, this);
     },
 
     createsDeleteButton: function () {
