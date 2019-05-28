@@ -68,10 +68,8 @@ let handlers = {
         view.displayTodos();
     },
 
-    deleteTodo: function () {
-        let deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
-        todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
-        deleteTodoPositionInput = '';
+    deleteTodo: function (position) {
+        todoList.deleteTodo(position);
         view.displayTodos();
     },
 
@@ -87,6 +85,7 @@ let view = {
     displayTodos: function () {
         let todosUl = document.querySelector('ul');
         todosUl.innerHTML = '';
+
         for (let i = 0; i < todoList.todos.length; i++) {
             let todoLi = document.createElement('li');
             let todo = todoList.todos[i];
@@ -98,8 +97,32 @@ let view = {
                 todoTextWithCompletion = '( ) ' + todo.todoText
             }
 
+            todoLi.id = i;
             todoLi.textContent = todoTextWithCompletion;
+            todoLi.appendChild(this.createsDeleteButton());
             todosUl.appendChild(todoLi);
         }
+    },
+
+    createsDeleteButton: function () {
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'deleteButton';
+        return deleteButton;
+    },
+
+    setUpEventListeners: function () {
+        let todosUl = document.querySelector('ul');
+
+        todosUl.addEventListener('click', function (event) {
+            let elementClicked = event.target;
+
+            //Checa se o elemento clicado é um botão delete.
+            if (elementClicked.className === 'deleteButton') {
+                handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+            }
+        });
     }
 }
+
+view.setUpEventListeners();
