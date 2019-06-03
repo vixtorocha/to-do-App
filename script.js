@@ -84,6 +84,7 @@ let view = {
         todosUl.innerHTML = '';
 
         todoList.todos.forEach(function (todo, position) {
+
             let todoLi = document.createElement('li');
             let todoTextWithCompletion = '';
 
@@ -95,6 +96,7 @@ let view = {
 
             todoLi.id = position;
             todoLi.textContent = todoTextWithCompletion;
+            todoLi.className = 'list-group-item'
             todoLi.appendChild(this.createsDeleteButton());
             todosUl.appendChild(todoLi);
         }, this);
@@ -102,8 +104,8 @@ let view = {
 
     createsDeleteButton: function () {
         let deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'deleteButton';
+        deleteButton.textContent = 'x';
+        deleteButton.className = 'deleteButton btn btn-outline-danger';
         return deleteButton;
     },
 
@@ -114,7 +116,7 @@ let view = {
             let elementClicked = event.target;
 
             //Checa se o elemento clicado é um botão delete.
-            if (elementClicked.className === 'deleteButton') {
+            if (elementClicked.className.includes('deleteButton')) {
                 handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
             }
         });
