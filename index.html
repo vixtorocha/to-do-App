@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <h1 class="text-center">Generic Todo App</h1>
+    <h1 class="text-center">App de Afazeres Genérico</h1>
 
     <section id="inner-app" class="d-flex flex-column align-items-center">
         <div>
-            <button onclick="handlers.toggleCompleted()" class=" btn btn-outline-primary">Toggle Completed</button>
-            <input id="toggleCompletedPositionInput" type="number" placeholder="Insira a posição da tarefa">
+            <button onclick="handlers.toggleCompleted()" class=" btn btn-outline-primary">Marcar</button>
+            <input id="toggleCompletedPositionInput" type="number" placeholder="Posição (começa do 0)">
         </div>
         <div>
             <button onclick="handlers.toggleAll()" class="btn btn-outline-primary">Marcar todas</button>
@@ -29,7 +29,7 @@
             <input id="addTodoTextInput" type="text" placeholder="Insira uma tarefa!">
         </div>
         <div>
-            <button onclick="handlers.changeTodo()" class=" btn btn-outline-primary">Change</button>
+            <button onclick="handlers.changeTodo()" class=" btn btn-outline-primary">Alterar</button>
             <input id="changeTodoPositionInput" type="number" placeholder="Posição">
             <input id="changeTodoTextInput" type="text" placeholder="Novo texto">
         </div>
