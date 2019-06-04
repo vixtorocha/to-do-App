@@ -86,20 +86,21 @@ let view = {
         todoList.todos.forEach(function (todo, position) {
 
             let todoLi = document.createElement('li');
-            let todoTextWithCompletion = '';
-
-            if (todo.completed === true) {
-                todoTextWithCompletion = '(x) ' + todo.todoText
-            } else {
-                todoTextWithCompletion = '( ) ' + todo.todoText
-            }
 
             todoLi.id = position;
-            todoLi.textContent = todoTextWithCompletion;
             todoLi.className = 'list-group-item'
+            todoLi.appendChild(this.createsToggleButton());
+            todoLi.appendChild(this.createsTodoTextSection(todo));
+            // todoLi.textContent = todoTextWithCompletion;
             todoLi.appendChild(this.createsDeleteButton());
             todosUl.appendChild(todoLi);
         }, this);
+    },
+
+    createsToggleButton: function () {
+        let toggleButton = document.createElement('input');
+        toggleButton.type = 'checkbox';
+        return toggleButton;
     },
 
     createsDeleteButton: function () {
@@ -107,6 +108,20 @@ let view = {
         deleteButton.textContent = 'x';
         deleteButton.className = 'deleteButton btn btn-outline-danger';
         return deleteButton;
+    },
+
+    createsTodoTextSection: function (todo) {
+        let todoTextSection = document.createElement('p');
+        let todoTextWithCompletion = '';
+
+        if (todo.completed === true) {
+            todoTextWithCompletion = '(x) ' + todo.todoText
+        } else {
+            todoTextWithCompletion = '( ) ' + todo.todoText
+        }
+
+        todoTextSection.textContent = todoTextWithCompletion;
+        return todoTextSection;
     },
 
     setUpEventListeners: function () {
