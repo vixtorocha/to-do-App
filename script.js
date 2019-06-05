@@ -70,9 +70,10 @@ let handlers = {
         view.displayTodos();
     },
 
-    toggleCompleted: function () {
-        let toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
-        todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+    toggleCompleted: function (position) {
+        // let toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
+        // todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+        todoList.toggleCompleted(position);
         toggleCompletedPositionInput = '';
         view.displayTodos();
     }
@@ -89,7 +90,7 @@ let view = {
 
             todoLi.id = position;
             todoLi.className = 'list-group-item'
-            todoLi.appendChild(this.createsToggleButton());
+            todoLi.appendChild(this.createsToggleButton(todo));
             todoLi.appendChild(this.createsTodoTextSection(todo));
             // todoLi.textContent = todoTextWithCompletion;
             todoLi.appendChild(this.createsDeleteButton());
@@ -97,10 +98,17 @@ let view = {
         }, this);
     },
 
-    createsToggleButton: function () {
+    createsToggleButton: function (todo) {
         let toggleButton = document.createElement('input');
         toggleButton.type = 'checkbox';
-        toggleButton.className = 'd-inline'
+
+        if (todo.completed === true) {
+            toggleButton.checked = true;
+        } else {
+            toggleButton.checked = false;
+        }
+
+        toggleButton.className = 'toggleButton d-inline'
         return toggleButton;
     },
 
@@ -136,8 +144,16 @@ let view = {
             if (elementClicked.className.includes('deleteButton')) {
                 handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
             }
+
+            //Checa se o elemento cliclado é o toggle
+            if (elementClicked.className.includes('toggleButton')) {
+                handlers.toggleCompleted(parseInt(elementClicked.parentNode.id));
+            }
         });
     }
 }
 
+/**
+ * setUpEventListeners precisa ser chamado para funcionar.
+ */
 view.setUpEventListeners();
