@@ -71,8 +71,6 @@ let handlers = {
     },
 
     toggleCompleted: function (position) {
-        // let toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
-        // todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
         todoList.toggleCompleted(position);
         toggleCompletedPositionInput = '';
         view.displayTodos();
@@ -80,6 +78,10 @@ let handlers = {
 };
 
 let view = {
+
+    /**
+     * Exibe as tarefas na tela
+     */
     displayTodos: function () {
         let todosUl = document.querySelector('ul');
         todosUl.innerHTML = '';
@@ -92,12 +94,16 @@ let view = {
             todoLi.className = 'list-group-item'
             todoLi.appendChild(this.createsToggleButton(todo));
             todoLi.appendChild(this.createsTodoTextSection(todo));
-            // todoLi.textContent = todoTextWithCompletion;
             todoLi.appendChild(this.createsDeleteButton());
             todosUl.appendChild(todoLi);
         }, this);
     },
 
+    /**
+     * Cria uma checkbox na tarefa para que seja possível marcá-la
+     * como completa.
+     * @param {Object} todo 
+     */
     createsToggleButton: function (todo) {
         let toggleButton = document.createElement('input');
         toggleButton.type = 'checkbox';
@@ -112,6 +118,9 @@ let view = {
         return toggleButton;
     },
 
+    /**
+     * Cria um botão Delete na tarefa.
+     */
     createsDeleteButton: function () {
         let deleteButton = document.createElement('button');
         deleteButton.textContent = 'x';
@@ -119,6 +128,10 @@ let view = {
         return deleteButton;
     },
 
+    /**
+     * Exibe o texto da tarefa.
+     * @param {Object} todo 
+     */
     createsTodoTextSection: function (todo) {
         let todoTextSection = document.createElement('p');
         let todoTextWithCompletion = '';
@@ -134,6 +147,9 @@ let view = {
         return todoTextSection;
     },
 
+    /**
+     * Cria event listeners nos botões.
+     */
     setUpEventListeners: function () {
         let todosUl = document.querySelector('ul');
 
@@ -145,7 +161,7 @@ let view = {
                 handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
             }
 
-            //Checa se o elemento cliclado é o toggle
+            //Checa se o elemento cliclado é um toggle
             if (elementClicked.className.includes('toggleButton')) {
                 handlers.toggleCompleted(parseInt(elementClicked.parentNode.id));
             }
@@ -153,7 +169,5 @@ let view = {
     }
 }
 
-/**
- * setUpEventListeners precisa ser chamado para funcionar.
- */
+// setUpEventListeners precisa ser chamado para funcionar.
 view.setUpEventListeners();
