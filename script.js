@@ -129,21 +129,18 @@ let view = {
     },
 
     /**
-     * Exibe o texto da tarefa.
+     * Exibe o texto da tarefa de acordo com seu estado.
      * @param {Object} todo 
      */
     createsTodoTextSection: function (todo) {
         let todoTextSection = document.createElement('p');
-        let todoTextWithCompletion = '';
 
         if (todo.completed === true) {
-            todoTextWithCompletion = '(x) ' + todo.todoText
-        } else {
-            todoTextWithCompletion = '( ) ' + todo.todoText
+            todoTextSection.className = 'strikethrough text-muted'
         }
+        todoTextSection.className += ' d-inline'
 
-        todoTextSection.textContent = todoTextWithCompletion;
-        todoTextSection.className = 'd-inline'
+        todoTextSection.textContent = todo.todoText;
         return todoTextSection;
     },
 

@@ -14,7 +14,8 @@
 
     <section id="inner-app" class="d-flex flex-column align-items-center">
         <div>
-            <button onclick="handlers.toggleAll()" class="btn btn-outline-primary">Marcar todas</button>
+            <button onclick=" handlers.addTodo()" class=" btn btn-outline-primary">+</button>
+            <input id="addTodoTextInput" type="text" placeholder="Insira uma tarefa!">
         </div>
 
         <ul class="list-group">
@@ -22,9 +23,9 @@
         </ul>
 
         <div>
-            <button onclick=" handlers.addTodo()" class=" btn btn-outline-primary">+</button>
-            <input id="addTodoTextInput" type="text" placeholder="Insira uma tarefa!">
+            <button onclick="handlers.toggleAll()" class="btn btn-outline-secondary">Marcar todas</button>
         </div>
+
         <div>
             <button onclick="handlers.changeTodo()" class=" btn btn-outline-primary">Alterar</button>
             <input id="changeTodoPositionInput" type="number" placeholder="Posição">
