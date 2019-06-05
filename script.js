@@ -100,13 +100,14 @@ let view = {
     createsToggleButton: function () {
         let toggleButton = document.createElement('input');
         toggleButton.type = 'checkbox';
+        toggleButton.className = 'd-inline'
         return toggleButton;
     },
 
     createsDeleteButton: function () {
         let deleteButton = document.createElement('button');
         deleteButton.textContent = 'x';
-        deleteButton.className = 'deleteButton btn btn-outline-danger';
+        deleteButton.className = 'deleteButton btn btn-outline-danger d-inline';
         return deleteButton;
     },
 
@@ -121,6 +122,7 @@ let view = {
         }
 
         todoTextSection.textContent = todoTextWithCompletion;
+        todoTextSection.className = 'd-inline'
         return todoTextSection;
     },
 
