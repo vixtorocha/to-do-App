@@ -107,7 +107,7 @@ let view = {
     createsEditButton: function () {
         let deleteButton = document.createElement('button');
         deleteButton.textContent = 'Edit';
-        deleteButton.className = 'btn btn-outline-info d-inline';
+        deleteButton.className = 'editButton btn btn-outline-info d-inline';
         return deleteButton;
     },
 
@@ -157,6 +157,27 @@ let view = {
     },
 
     /**
+     * Coloca um input no lugar da tarefa.
+     * @param {Object} todoLi O elemento 'li' que será editado
+     */
+    createsChangeTodoInput: function (todoLi) {
+        console.log("Objeto:", todoLi);
+        todoText = todoLi.querySelector('p').textContent;
+
+        //Remove tudo dentro do li
+        while (todoLi.firstChild) {
+            todoLi.removeChild(todoLi.firstChild);
+        }
+
+        //Coloca um input no lugar
+        let todoChangeInputElement = document.createElement('input');
+        todoChangeInputElement.value = todoText;
+        // TODO colocar um botão para confirmar o input.
+        todoLi.appendChild(todoChangeInputElement);
+        //Manda o input para a função todoList.changeTodos
+    },
+
+    /**
      * Cria event listeners nos botões.
      */
     setUpEventListeners: function () {
@@ -173,6 +194,11 @@ let view = {
             //Checa se o elemento cliclado é um toggle
             if (elementClicked.className.includes('toggleButton')) {
                 handlers.toggleCompleted(parseInt(elementClicked.parentNode.id));
+            }
+
+            //Checa se o elemento cliclado é um botão de editar
+            if (elementClicked.className.includes('editButton')) {
+                view.createsChangeTodoInput(elementClicked.parentNode);
             }
         });
     }
