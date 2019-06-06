@@ -92,11 +92,23 @@ let view = {
 
             todoLi.id = position;
             todoLi.className = 'list-group-item'
+            todoLi.appendChild(this.createsEditButton());
             todoLi.appendChild(this.createsToggleButton(todo));
             todoLi.appendChild(this.createsTodoTextSection(todo));
             todoLi.appendChild(this.createsDeleteButton());
             todosUl.appendChild(todoLi);
         }, this);
+    },
+
+    /**
+     * Cria um botão de editar tarefa.
+     * @param {Object} todo 
+     */
+    createsEditButton: function () {
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Edit';
+        deleteButton.className = 'btn btn-outline-info d-inline';
+        return deleteButton;
     },
 
     /**
