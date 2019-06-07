@@ -56,10 +56,9 @@ let handlers = {
         view.displayTodos();
     },
 
-    changeTodo: function () {
-        let changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+    changeTodo: function (position) {
         let changeTodoTextInput = document.getElementById('changeTodoTextInput');
-        todoList.changeTodos(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+        todoList.changeTodos(position, changeTodoTextInput.value);
         changeTodoPositionInput = '';
         changeTodoTextInput = '';
         view.displayTodos();
@@ -171,10 +170,16 @@ let view = {
 
         //Coloca um input no lugar
         let todoChangeInputElement = document.createElement('input');
-        todoChangeInputElement.value = todoText;
-        // TODO colocar um botão para confirmar o input.
+        todoChangeInputElement.value = todoText; //Mostra o texto atual.
+        todoChangeInputElement.id = 'changeTodoTextInput';
+
+        let changeButton = document.createElement('button');
+        changeButton.textContent = 'Alterar'
+        changeButton.className = 'confirmChangeButton'
+
         todoLi.appendChild(todoChangeInputElement);
-        //Manda o input para a função todoList.changeTodos
+        todoLi.appendChild(changeButton);
+
     },
 
     /**
@@ -199,6 +204,11 @@ let view = {
             //Checa se o elemento cliclado é um botão de editar
             if (elementClicked.className.includes('editButton')) {
                 view.createsChangeTodoInput(elementClicked.parentNode);
+            }
+
+            //Checa se o elemento cliclado foi um botão de 'alterar' a modificação
+            if (elementClicked.className.includes('confirmChangeButton')) {
+                handlers.changeTodo(parseInt(elementClicked.parentNode.id));
             }
         });
     }
