@@ -9,21 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
-<body>
-    <h1 class="text-center">App de Afazeres Genérico</h1>
+<body class="bg-background">
 
-    <section id="inner-app" class="d-flex flex-column align-items-center">
+    <h1 class="text-center">App de Afazeres</h1>
+
+    <section id="inner-app"
+        class="d-flex flex-column align-items-center align-content-center bg-white shadow p-3 container">
         <div>
             <button onclick=" handlers.addTodo()" class=" btn btn-outline-primary">+</button>
             <input id="addTodoTextInput" type="text" placeholder="Insira uma tarefa!">
         </div>
 
-        <ul class="list-group">
+        <ul class="">
             <!-- Aqui é onde as tarefas aparecerão -->
         </ul>
 
         <div>
-            <button onclick="handlers.toggleAll()" class="btn btn-outline-secondary">Marcar todas</button>
+            <button onclick="handlers.toggleAll()" class="btn btn-sm btn-outline-secondary">Marcar todas</button>
         </div>
     </section>
 

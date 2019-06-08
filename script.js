@@ -106,7 +106,7 @@ let view = {
     createsEditButton: function () {
         let deleteButton = document.createElement('button');
         deleteButton.textContent = 'Edit';
-        deleteButton.className = 'editButton btn btn-outline-info d-inline';
+        deleteButton.className = 'editButton btn btn-sm btn-outline-info d-inline';
         return deleteButton;
     },
 
@@ -135,7 +135,7 @@ let view = {
     createsDeleteButton: function () {
         let deleteButton = document.createElement('button');
         deleteButton.textContent = 'x';
-        deleteButton.className = 'deleteButton btn btn-outline-danger d-inline';
+        deleteButton.className = 'deleteButton btn btn-sm btn-outline-danger d-inline';
         return deleteButton;
     },
 
@@ -206,11 +206,13 @@ let view = {
                 view.createsChangeTodoInput(elementClicked.parentNode);
             }
 
-            //Checa se o elemento cliclado foi um botão de 'alterar' a modificação
+            //Checa se o elemento clicado foi um botão de 'alterar' a modificação
             if (elementClicked.className.includes('confirmChangeButton')) {
                 handlers.changeTodo(parseInt(elementClicked.parentNode.id));
             }
         });
+
+        todosUl.addEventListener()
     }
 }
 
